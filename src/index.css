@@ -7,3 +7,13 @@
 html {
   scroll-behavior: smooth;
 }
+
+/* Smooth theme transition */
+html {
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Optional: Improve base body styling */
+body {
+  @apply bg-white text-black dark:bg-black dark:text-white;
+}

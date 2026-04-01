@@ -43,7 +43,7 @@ function Certifications() {
       title: "Aavishkar Research",
       platform: "University of Mumbai",
       date: "Dec 2023",
-      link: "https://drive.google.com/file/d/18TwNMeP2hmy3wJbSAlpO9EholZXwkd-/view?usp=sharing",
+      link: "https://drive.google.com/file/d/18TwNMeP2hmy3wJbSAlpO9EholZXwkd-/view",
     },
   ];
 
@@ -52,23 +52,24 @@ function Certifications() {
       title: "CSRBOX Applied AI Internship",
       platform: "AICTE",
       date: "Jan 2026",
-      link: "https://drive.google.com/file/d/1XcLNWnDloduDi6KtAIiHQnLYMF97-s8R/view?usp=drive_link",
+      link: "https://drive.google.com/file/d/1XcLNWnDloduDi6KtAIiHQnLYMF97-s8R/view",
     },
     {
       title: "Data Management Analyst Intern",
       platform: "Anarde Foundation | India",
       date: "Jun 2025",
-      link: "https://drive.google.com/file/d/1wYGCearc1OuHTwuIaxEAlRu1fdLCCLKH/view?usp=sharing",
+      link: "https://drive.google.com/file/d/1wYGCearc1OuHTwuIaxEAlRu1fdLCCLKH/view",
     },
   ];
 
   const CertificateCard = ({ cert }) => (
-    <div className="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-md hover:shadow-lg transition-colors duration-300">
+    <div className="p-6 bg-white dark:bg-gray-800 border dark:border-gray-700 rounded-xl shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
+      
       <h3 className="text-lg font-semibold mb-2">
         {cert.title}
       </h3>
 
-      <p className="text-gray-500 dark:text-gray-300 text-sm mb-1">
+      <p className="text-gray-500 dark:text-gray-300 text-sm mb-2">
         {cert.platform} • {cert.date}
       </p>
 
@@ -76,7 +77,7 @@ function Certifications() {
         href={cert.link}
         target="_blank"
         rel="noopener noreferrer"
-        className="inline-block mt-3 text-blue-600 dark:text-blue-400 font-medium hover:underline"
+        className="inline-block mt-2 text-blue-600 dark:text-blue-400 font-medium hover:underline"
       >
         View Certificate →
       </a>
@@ -87,35 +88,38 @@ function Certifications() {
     <AnimatedSection>
       <section
         id="certifications"
-        className="py-16 bg-gray-100 dark:bg-gray-900 text-center text-black dark:text-white transition-colors duration-300"
+        className="py-20 bg-gray-100 dark:bg-gray-900 text-black dark:text-white transition-colors duration-300"
       >
-        
-        <h2 className="text-3xl font-bold mb-10">
-          Certifications & Achievements
-        </h2>
 
-        <div className="max-w-5xl mx-auto text-left space-y-12">
+        {/* Section Title */}
+        <div className="text-center mb-12">
+          <h2 className="text-3xl md:text-4xl font-bold">
+            Certifications & Achievements
+          </h2>
+        </div>
 
-          {/* Courses / Tests */}
-          <div>
-            <h3 className="text-xl font-semibold mb-6">
+        <div className="max-w-6xl mx-auto px-6">
+
+          {/* Course Certificates */}
+          <div className="mb-16">
+            <h3 className="text-xl font-semibold mb-8">
               Course Certificates
             </h3>
 
-            <div className="grid md:grid-cols-2 gap-6">
+            <div className="grid md:grid-cols-2 gap-8">
               {coursesAndTests.map((cert, index) => (
                 <CertificateCard key={index} cert={cert} />
               ))}
             </div>
           </div>
 
-          {/* Internships */}
+          {/* Internship Certificates */}
           <div>
-            <h3 className="text-xl font-semibold mb-6">
+            <h3 className="text-xl font-semibold mb-8">
               Internship Certificates
             </h3>
 
-            <div className="grid md:grid-cols-2 gap-6">
+            <div className="grid md:grid-cols-2 gap-8">
               {internships.map((cert, index) => (
                 <CertificateCard key={index} cert={cert} />
               ))}

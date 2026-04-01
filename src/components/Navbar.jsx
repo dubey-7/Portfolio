@@ -27,20 +27,29 @@ function Navbar({ theme, setTheme }) {
     <a
       href={`#${id}`}
       onClick={() => setMenuOpen(false)}
-      className={`block md:inline hover:text-gray-500 ${
-        activeSection === id ? "text-black font-semibold" : "text-gray-600"
+      className={`block md:inline hover:text-gray-400 transition-colors ${
+        activeSection === id
+          ? "text-black dark:text-white font-semibold"
+          : "text-gray-600 dark:text-gray-300"
       }`}
     >
       {label}
     </a>
   );
 
+  // ✅ FIXED TOGGLE (important)
+  const toggleTheme = () => {
+    setTheme(prev => (prev === "light" ? "dark" : "light"));
+  };
+
   return (
-    <nav className="fixed top-0 left-0 w-full bg-white shadow-md z-50">
+    <nav className="fixed top-0 left-0 w-full bg-white dark:bg-black shadow-md z-50 transition-colors duration-300">
       <div className="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
 
         {/* Logo */}
-        <h1 className="text-xl font-bold">Sakshi</h1>
+        <h1 className="text-xl font-bold text-black dark:text-white">
+          Sakshi
+        </h1>
 
         {/* Desktop Menu */}
         <div className="hidden md:flex space-x-6 font-medium items-center">
@@ -56,36 +65,44 @@ function Navbar({ theme, setTheme }) {
 
           {/* Theme Toggle */}
           <button
-            onClick={() => setTheme(theme === "light" ? "dark" : "light")}
-            className="ml-4 px-3 py-1 border rounded hover:bg-gray-200"
+            onClick={toggleTheme}
+            className="ml-4 px-3 py-1 border rounded 
+                       border-gray-400 dark:border-gray-600
+                       hover:bg-gray-200 dark:hover:bg-gray-800
+                       transition-colors"
           >
             {theme === "light" ? "🌙" : "☀️"}
           </button>
 
         </div>
 
-        {/* Mobile Hamburger */}
+        {/* Mobile Controls */}
         <div className="md:hidden flex items-center gap-3">
 
           {/* Theme Toggle (Mobile) */}
           <button
-            onClick={() => setTheme(theme === "light" ? "dark" : "light")}
-            className="px-2 py-1 border rounded"
+            onClick={toggleTheme}
+            className="px-2 py-1 border rounded 
+                       border-gray-400 dark:border-gray-600
+                       hover:bg-gray-200 dark:hover:bg-gray-800"
           >
             {theme === "light" ? "🌙" : "☀️"}
           </button>
 
-          <button onClick={() => setMenuOpen(!menuOpen)}>
+          {/* Hamburger */}
+          <button
+            onClick={() => setMenuOpen(!menuOpen)}
+            className="text-black dark:text-white text-xl"
+          >
             ☰
           </button>
 
         </div>
-
       </div>
 
       {/* Mobile Menu */}
       {menuOpen && (
-        <div className="md:hidden bg-white px-6 pb-4 space-y-3 font-medium">
+        <div className="md:hidden bg-white dark:bg-black px-6 pb-4 space-y-3 font-medium transition-colors">
 
           {navLink("home", "Home")}
           {navLink("about", "About")}

@@ -12,7 +12,21 @@ import Contact from "./components/Contact";
 import Footer from "./components/Footer";
 
 function App() {
-  const [theme, setTheme] = useState("light");
+  // Initialize theme:
+  // 1. localStorage
+  // 2. system preference
+  const [theme, setTheme] = useState(() => {
+    const savedTheme = localStorage.getItem("theme");
+
+    if (savedTheme) return savedTheme;
+
+    // fallback to system theme
+    const systemPrefersDark = window.matchMedia(
+      "(prefers-color-scheme: dark)"
+    ).matches;
+
+    return systemPrefersDark ? "dark" : "light";
+  });
 
   useEffect(() => {
     const root = document.documentElement;
@@ -22,6 +36,9 @@ function App() {
     } else {
       root.classList.remove("dark");
     }
+
+    localStorage.setItem("theme", theme);
+
   }, [theme]);
 
   return (
@@ -29,7 +46,6 @@ function App() {
       <Navbar theme={theme} setTheme={setTheme} />
 
       <div className="min-h-screen bg-white text-black dark:bg-black dark:text-white transition-colors duration-300">
-
         <Hero />
         <About />
         <Skills />
@@ -39,7 +55,6 @@ function App() {
         <Research />
         <Contact />
         <Footer />
-
       </div>
     </>
   );
